@@ -19,12 +19,10 @@
 
 ### Categories
 - [C#](https://github.com/yunho-dev/TIL/tree/main/C%23)
-- [C](https://github.com/yunho-dev/TIL) -작성중
-- [C++](https://github.com/yunho-dev/TIL) -아직 시작X
+- [C++](https://github.com/yunho-dev/TIL) -공부 예정
 
 
 ### ETC
 __※ 코딩에 도움 될 만한 지식이나, 사소한 팁, 중요한 정보 등을 작성합니다.__   
 __※ 개인적인 학습을 위해 작성하는 것이므로 틀린 정보가 있을 수 있습니다.__   
-__※ 주로 C# 정보 위주로 작성합니다.__
-- [작성중](https://github.com/yunho-dev/TIL/tree/main/ETC)
+- [ETC](https://github.com/yunho-dev/TIL/tree/main/ETC)
