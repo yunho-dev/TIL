@@ -4,7 +4,10 @@
 오늘 공부한 것을 정리하는 곳입니다.
    
     
--시작: 2022.04.04.   
+-시작: 2022.04.04.\
+
+사정상 22.05.07.부터 커밋을 하지 못했음. 22.06.27부터 다시 커밋 시작(Java).
+
 
 *나는 코딩 초보다. 공개 작성에 부담갖지 말고 열심히 적어보자.*
 
@@ -18,8 +21,8 @@
 
 
 ### Categories
+- [Java](https://github.com/yunho-dev/TIL/tree/main/Java)
 - [C#](https://github.com/yunho-dev/TIL/tree/main/C%23)
-- [C++](https://github.com/yunho-dev/TIL) -공부 예정
 
 
 ### ETC
