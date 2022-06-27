@@ -1,0 +1,110 @@
+# TIL 05.08-09
+(08~09 같이올림.)
+## 예외
+프로그램을 실행했을 때 비정상적으로 종료하는 것을 예외라고 함.(오류아님)
+
+---
+### System.Exceptio 타입 주요멤버  
+Message = 예외 설명 메시지 반환  
+Source = 예외 발생시킨 응용프로그램 이름 반환  
+StackTrace = 예외가 발생된 메서드의 호출 스택 반환  
+ToString = message.StackTrace 내용을 포함한 문자열 반환.
+
+---
+
+
+### 예외처리기
+예외 발생시 프로그램 종료를 시키는 것이 아니라, 예외 상황을 사용자에게 알리고 프로그램을 계속 실행시키려면 예외가 발생할 수 있는 코드를 try/catch로 묶어둬야한다.  
+```
+int divisor = 0;
+try
+{
+int quotient = 10 / divisor;
+}
+catch { }
+//10을 0으로 나누려 했기 때문에 예외처리됨. 프로그램 종료되지 않고, catch 블록으로 넘어감.
+```
+try 블록: 모든 코드가 실행되지만, 예외 발생시 원인 부분부터 try 블록 마지막 코드까지 실행되지 않음.  
+catch 블록: 예외가 발생한 경우에 실행됨.(catch내에 try/catch 중첩 가능)  
+
+finally 블록: try블록 내에서 예외가 발생하는 것과 상관없이 언제나 실행.  
+
+즉, 예외 발생 안하면 try 블록 코드 실행 > finally 블록.  
+
+예외 발생시 TRY 블록 일부 코드 실행된 뒤 CATCH > FINALLY
+
+```
+try
+{
+int quotient = 10 / divisor;
+Console.WriteLine("예외가 발생하지 않으면 실행됨!");
+}
+catch 
+{
+Console.WriteLine("예외가 발생하면 실행됨!");
+}
+finally
+{
+Console.WriteLine("언제나 실행");
+}
+```
+finally 블록은 자원을 해제하는 코드를 넣어두는 용도로 자주 씀.  
+
+catch는 개발자가 원하는 예외만을 잡을 수도 있음.
+
+```
+public class Class1
+    {
+        static void Manin (string[] args)
+        {
+        int divisor = 0;
+            string txt = null;
+
+            try
+            {
+                Console.WriteLine(txt.ToUpper()); // System.NullReferenceException 예외 발생
+                int quotient = 10 / divisor;
+            }
+            catch(System.DivideByZeroException) //예외 타입 지정.
+            //DivideByZeroException타입을 명시하고 있으므로
+            //그 밖의 예외 발생시 CLR의 기본 예외 처리 작업을 거침.
+            {
+                Console.WriteLine("어떤 예외가 발생해도 실행되지 않는다.");
+            }
+            catch (System.NullReferenceException) // 컴파일 오류 발생
+            {
+                Console.WriteLine("어떤 예외가 발생해도 실행되지 않는다.");
+            }
+            catch (System.Exception) //만약 System.Exception이 맨 위에 있으면,
+                                     //모든 예외가 System.Exception으로 형변환 가능하므로
+                                     //이 아래의 코드는 실행 안 됨.
+            {
+                Console.WriteLine("예외가 발생하면 언제나 실행된다.");
+            }
+        }
+    }
+```
+
+또한, catch구문에서는 타입 말고도 예외의 인스턴스를 변수로 받는 것도 가능.
+```
+class Program
+    {
+        static void Main(string[] args)
+        {
+            int divisor = 0;
+            try
+            {
+                int quotient = 10 / divisor;
+            }
+            catch (System.DivideByZeroException e)
+            {
+                Console.WriteLine(e.Message); //예외 설명 메시지 반환
+                Console.WriteLine(e.Source); //예외 발생시킨 응용프로그램 이름 반환
+                Console.WriteLine(e.StackTrace); //예외가 발생된 메서드의 호출 스택 반환
+                Console.WriteLine("----------------");
+                Console.WriteLine(e.ToString()); //message.StackTrace내용을 포함한 문자열 반환.
+            }
+            //프로그램이 실행되는 도중 발생하는 예외에 대한 기록을 남길 수 있음.
+        }
+    }
+```
